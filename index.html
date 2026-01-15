@@ -27,15 +27,18 @@
         </button>
         <span class="pill" id="statusPill">Estado: Cargando…</span>
         <button class="btn" id="btnShare" type="button">Compartir</button>
-        <button class="btn" id="btnTheme" type="button">Modo</button>
       </div>
     </header>
 
     <!-- NAVEGACIÓN POR TABS -->
     <nav class="tabs" role="tablist">
-      <button class="tab active" data-tab="situacion" role="tab" aria-selected="true">
-        <span class="tab-icon"><i class="fa-solid fa-chart-line"></i></span>
-        <span class="tab-label">Situación Actual</span>
+      <button class="tab active" data-tab="voluntariado" role="tab" aria-selected="true">
+        <span class="tab-icon"><i class="fa-solid fa-users"></i></span>
+        <span class="tab-label">Voluntariado</span>
+      </button>
+      <button class="tab" data-tab="donaciones" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+        <span class="tab-label">Donaciones</span>
       </button>
       <button class="tab" data-tab="necesidades" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-list-check"></i></span>
@@ -45,21 +48,17 @@
         <span class="tab-icon"><i class="fa-solid fa-handshake-angle"></i></span>
         <span class="tab-label">Puntos de Acopio</span>
       </button>
-      <button class="tab" data-tab="voluntariado" role="tab" aria-selected="false">
-        <span class="tab-icon"><i class="fa-solid fa-users"></i></span>
-        <span class="tab-label">Voluntariado</span>
-      </button>
       <button class="tab" data-tab="servicios" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-hands-holding-circle"></i></span>
         <span class="tab-label">Servicios para Voluntarios</span>
       </button>
+      <button class="tab" data-tab="situacion" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-chart-line"></i></span>
+        <span class="tab-label">Situación Actual</span>
+      </button>
       <button class="tab" data-tab="salud" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-heart-pulse"></i></span>
         <span class="tab-label">Salud y Cuidado</span>
-      </button>
-      <button class="tab" data-tab="donaciones" role="tab" aria-selected="false">
-        <span class="tab-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
-        <span class="tab-label">Donaciones</span>
       </button>
       <button class="tab" data-tab="recursos" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-list-ul"></i></span>
@@ -81,7 +80,7 @@
       </section>
 
       <!-- TAB 1: SITUACIÓN ACTUAL -->
-      <div class="tab-content active" id="tab-situacion" role="tabpanel">
+      <div class="tab-content" id="tab-situacion" role="tabpanel">
 
       <section class="grid">
         <!-- IZQUIERDA: INFORMACIÓN CENTRAL -->
@@ -174,102 +173,49 @@
       </div><!-- Fin tab-ayuda -->
 
       <!-- TAB 3: VOLUNTARIADO -->
-      <div class="tab-content" id="tab-voluntariado" role="tabpanel">
+      <div class="tab-content active" id="tab-voluntariado" role="tabpanel">
+
+      <!-- ADVERTENCIA CRÍTICA - ANTES DE VIAJAR -->
+      <section class="card" style="border: 2px solid rgba(255,214,102,.40); background: rgba(255,214,102,.06);">
+        <div class="hd">
+          <h2>⚠️ ANTES DE VIAJAR - LEELO COMPLETO</h2>
+          <span class="tag danger">Crítico</span>
+        </div>
+        <div class="bd">
+          <div style="display: grid; gap: 16px;">
+            <div style="padding: 12px; background: rgba(94,240,160,.1); border-radius: 8px; border-left: 4px solid rgba(94,240,160,.6);">
+              <div style="font-weight: 600; margin-bottom: 8px;">✅ PODÉS AYUDAR SI:</div>
+              <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
+                <li>Te coordinaste previamente por WhatsApp</li>
+                <li>Tenés autonomía (comida, agua, lugar para dormir)</li>
+                <li>Tenés experiencia o te asignaron una tarea específica</li>
+              </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,92,108,.1); border-radius: 8px; border-left: 4px solid rgba(255,92,108,.6);">
+              <div style="font-weight: 600; margin-bottom: 8px; color: var(--danger);">❌ NO VIAJES SI:</div>
+              <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
+                <li><strong>No te coordinaste antes</strong></li>
+                <li>Esperás que te organicen todo (alojamiento, comida, transporte)</li>
+                <li>No tenés experiencia y pensás "aprendo allá"</li>
+              </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(0,0,0,.1); border-radius: 8px;">
+              <strong>📱 COORDINÁ PRIMERO:</strong> Completá el formulario abajo y contactá por WhatsApp.
+              <strong>NO te presentes sin aviso.</strong> Podés entorpecer la logística y ponerte en riesgo.
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section class="card" id="voluntariado">
         <div class="hd">
-          <h2>Voluntariado</h2>
+          <h2>Voluntariados</h2>
           <span class="tag need">Coordinar antes de ir</span>
         </div>
         <div class="bd">
-          <!-- ADVERTENCIA CRÍTICA - ANTES DE VIAJAR -->
-          <div class="alert" style="background: rgba(255,214,102,.12); border-color: rgba(255,214,102,.40); border-width: 2px;">
-            <div style="display: flex; gap: 12px; align-items: start;">
-              <div style="font-size: 28px; line-height: 1;">⚠️</div>
-              <div style="flex: 1;">
-                <strong style="font-size: 16px; display: block; margin-bottom: 8px;">🔥 ANTES DE VIAJAR - LEELO COMPLETO</strong>
-
-                <div style="margin: 12px 0;">
-                  <div style="font-weight: 600; margin-bottom: 6px;">✅ PODÉS AYUDAR SI:</div>
-                  <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
-                    <li>Te coordinaste previamente por WhatsApp</li>
-                    <li>Tenés autonomía (comida, agua, lugar para dormir)</li>
-                    <li>Tenés experiencia o te asignaron una tarea específica</li>
-                  </ul>
-                </div>
-
-                <div style="margin: 12px 0;">
-                  <div style="font-weight: 600; margin-bottom: 6px; color: var(--danger);">❌ NO VIAJES SI:</div>
-                  <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
-                    <li><strong>No te coordinaste antes</strong></li>
-                    <li>Esperás que te organicen todo (alojamiento, comida, transporte)</li>
-                    <li>No tenés experiencia y pensás "aprendo allá"</li>
-                  </ul>
-                </div>
-
-                <div style="margin-top: 12px; padding: 10px; background: rgba(0,0,0,.15); border-radius: 6px;">
-                  <strong>📱 COORDINÁ PRIMERO:</strong> Completá el formulario abajo y contactá por WhatsApp.
-                  <strong>NO te presentes sin aviso.</strong> Podés entorpecer la logística y ponerte en riesgo.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <!-- Red Virtual Patagonia - Necesidades urgentes -->
-          <div class="item" style="background: rgba(255,92,108,.08); border-color: rgba(255,92,108,.30);">
-            <div class="top">
-              <strong>Necesidades Urgentes - Red Virtual Patagonia</strong>
-              <span class="tag danger">Prioritario</span>
-            </div>
-            <div class="muted" style="margin-bottom:12px;">
-              <strong>NECESITAMOS:</strong>
-            </div>
-            <div style="display:grid; gap:10px; margin-bottom:12px;">
-              <div style="padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
-                <div style="font-weight:600; margin-bottom:4px;"></i>1- Voluntarios/as Brigadistas / Bomberos/as</div>
-                <div class="small">Con formación en IIFF</div>
-              </div>
-              <div style="padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
-                <div style="font-weight:600; margin-bottom:4px;">2- Vehículos para llevar voluntarios/as</div>
-                <div class="small">Desde BSAS / Rosario / CBA a Epuyén</div>
-              </div>
-            </div>
-            <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-              <div style="flex:1;">
-                <div class="small">Coordinación: <strong>@redvirtualpatagonia</strong></div>
-                <div class="small">Contacto: <a href="tel:+5493546567422" class="mono" style="color:var(--accent); text-decoration:none;">+549 3546567422</a></div>
-              </div>
-              <a class="btn danger" href="https://wa.me/5493546567422?text=Hola,%20vi%20la%20solicitud%20de%20voluntarios%20de%20Red%20Virtual%20Patagonia%20y%20quiero%20ayudar" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Contactar
-              </a>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <!-- Reconstrucción -->
-          <div class="item" style="background: rgba(73,213,164,.08); border-color: rgba(73,213,164,.30);">
-            <div class="top">
-              <strong>Grupo de Reconstrucción de Viviendas</strong>
-              <span class="tag ok">Construcción</span>
-            </div>
-            <div class="muted">
-              Estamos armando un grupo de gente con experiencia en construcción natural o tradicional: carpinteros, albañiles, herreros, electricistas, plomeros, etc.
-              También aceptamos donaciones de materiales de construcción para crear refugios a las familias que perdieron todo en los incendios.
-            </div>
-            <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-              <div style="flex:1;">
-                <div class="small">Coordinadora: Natalia Oller (Bioconstructora, Bariloche)</div>
-                <div class="small">Contacto: <a href="tel:+5492944895567" class="mono" style="color:var(--accent); text-decoration:none;">2944895567</a></div>
-              </div>
-              <a class="btn good" href="https://wa.me/5492944895567?text=Hola%20Natalia,%20me%20interesa%20colaborar%20con%20la%20reconstrucci%C3%B3n%20de%20viviendas" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Contactar
-              </a>
-            </div>
-          </div>
-
+          <div class="list" id="voluntariadosList"></div>
         </div>
       </section>
 

@@ -101,6 +101,7 @@ async function loadConfig() {
     if (voluntJson) {
       CONFIG.volunteerWhatsAppNumber = voluntJson.volunteerWhatsAppNumber || '';
       CONFIG.whatsappGroups = voluntJson.whatsappGroups || null;
+      CONFIG.voluntariados = voluntJson.voluntariados || [];
     }
 
     return true;
@@ -339,6 +340,71 @@ function renderEmergency(){
   `).join("");
 }
 
+function renderVoluntariados(){
+  const list = CONFIG.voluntariados || [];
+  if (!list.length) return;
+
+  const colorMap = {
+    danger: { bg: 'rgba(255,92,108,.08)', border: 'rgba(255,92,108,.30)', btn: 'danger' },
+    ok: { bg: 'rgba(73,213,164,.08)', border: 'rgba(73,213,164,.30)', btn: 'good' },
+    need: { bg: 'rgba(255,214,102,.08)', border: 'rgba(255,214,102,.30)', btn: 'primary' },
+    default: { bg: 'rgba(255,255,255,.04)', border: 'var(--border)', btn: '' }
+  };
+
+  $("#voluntariadosList").innerHTML = list.map((v, idx) => {
+    const colors = colorMap[v.tipo] || colorMap.default;
+    const waLink = `https://wa.me/${v.telefono.replace(/\+/g,'')}?text=${encodeURIComponent(v.whatsappMensaje)}`;
+
+    let necesidadesHtml = '';
+    if (v.necesidades && v.necesidades.length) {
+      necesidadesHtml = `
+        <div class="muted" style="margin-bottom:12px;"><strong>NECESITAMOS:</strong></div>
+        <div style="display:grid; gap:10px; margin-bottom:12px;">
+          ${v.necesidades.map((n, i) => `
+            <div style="padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
+              <div style="font-weight:600; margin-bottom:4px;">${i+1}- ${escapeHtml(n.titulo)}</div>
+              <div class="small">${escapeHtml(n.detalle)}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    let descripcionHtml = v.descripcion ? `<div class="muted">${escapeHtml(v.descripcion)}</div>` : '';
+
+    let contactoHtml = '';
+    if (v.coordinacion) {
+      contactoHtml += `<div class="small">Coordinación: <strong>${escapeHtml(v.coordinacion)}</strong></div>`;
+    }
+    if (v.coordinador) {
+      contactoHtml += `<div class="small">Coordinador/a: ${escapeHtml(v.coordinador)}</div>`;
+    }
+    contactoHtml += `<div class="small">Contacto: <a href="tel:${escapeHtml(v.telefono)}" class="mono" style="color:var(--accent); text-decoration:none;">${escapeHtml(v.telefonoDisplay)}</a></div>`;
+
+    const separator = idx < list.length - 1 ? '<div class="hr"></div>' : '';
+
+    return `
+      <div class="item" style="background: ${colors.bg}; border-color: ${colors.border};">
+        <div class="top">
+          <strong>${escapeHtml(v.titulo)}</strong>
+          <span class="tag ${v.tipo}">${escapeHtml(v.tipoLabel)}</span>
+        </div>
+        ${necesidadesHtml}
+        ${descripcionHtml}
+        <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <div style="flex:1;">
+            ${contactoHtml}
+          </div>
+          <a class="btn ${colors.btn}" href="${waLink}" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Contactar
+          </a>
+        </div>
+      </div>
+      ${separator}
+    `;
+  }).join('');
+}
+
 function renderWhatsappGroups(){
   if (!CONFIG.whatsappGroups) return;
 
@@ -494,21 +560,6 @@ function wireShare(){
   });
 }
 
-function wireTheme(){
-  const key = "comarca_theme";
-  const apply = (t)=>{
-    document.documentElement.setAttribute("data-theme", t);
-  };
-  const saved = localStorage.getItem(key) || "dark";
-  apply(saved);
-
-  $("#btnTheme").addEventListener("click", ()=>{
-    const cur = document.documentElement.getAttribute("data-theme") || "dark";
-    const next = cur === "dark" ? "light" : "dark";
-    apply(next);
-    localStorage.setItem(key, next);
-  });
-}
 
 function wireFilters(){
   $("#searchUpdates").addEventListener("input", renderUpdates);
@@ -728,12 +779,12 @@ async function boot(){
   renderQuickLinks();
   renderEmergency();
   renderWhatsappGroups();
+  renderVoluntariados();
   renderServices();
 
   wireCopyButtons();
   wireVolunteer();
   wireShare();
-  wireTheme();
   wireFilters();
   wireBackToTop();
   enableSmoothScroll();

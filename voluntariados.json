@@ -1,8 +1,28 @@
 {
   "volunteerWhatsAppNumber": "5490000000000",
+  "voluntariados": [
+    {
+      "id": "reconstruccion-viviendas",
+      "titulo": "Grupo de Reconstrucción de Viviendas",
+      "tipo": "ok",
+      "tipoLabel": "Construcción",
+      "descripcion": "Estamos armando un grupo de gente con experiencia en construcción natural o tradicional: carpinteros, albañiles, herreros, electricistas, plomeros, etc. También aceptamos donaciones de materiales de construcción para crear refugios a las familias que perdieron todo en los incendios.",
+      "necesidades": null,
+      "coordinacion": null,
+      "coordinador": "Natalia Oller (Bioconstructora, Bariloche)",
+      "telefono": "+5492944895567",
+      "telefonoDisplay": "2944895567",
+      "whatsappMensaje": "Hola Natalia, me interesa colaborar con la reconstrucción de viviendas"
+    }
+  ],
   "whatsappGroups": {
     "description": "Grupos comunitarios de coordinación para voluntarios que desean ayudar en los incendios de Epuyén/El Hoyo y mantenerse al tanto de la situación.",
     "mainGroups": [
+      {
+        "name": "Comunidad Hasta La Lluvia",
+        "description": "Comunidad de coordinación y apoyo",
+        "link": "https://chat.whatsapp.com/D1eSSbKk6gb0NyPvsUkw3S"
+      },
       {
         "name": "Voluntarios Mallín/Epuyén",
         "description": "Grupo principal para mantenerse al tanto de todo",
