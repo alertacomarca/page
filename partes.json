@@ -1,0 +1,22 @@
+{
+  "updates": [
+    {
+      "id": "u1",
+      "title": "Parte operativo (ejemplo)",
+      "body": "Actualizar con novedades: zonas afectadas, recursos en terreno, recomendaciones.",
+      "town": "Comarca",
+      "source": "Comité de Emergencia",
+      "level": "PRECAUCIÓN",
+      "time": "2026-01-11 10:30"
+    },
+    {
+      "id": "u2",
+      "title": "Corte preventivo de ruta (ejemplo)",
+      "body": "Indicar tramo, horario, desvíos sugeridos y autoridad que lo informa.",
+      "town": "Zona",
+      "source": "Vialidad / Municipio",
+      "level": "ALERTA",
+      "time": "2026-01-11 09:10"
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Incendios Comarca Andina | Información y Ayuda</title>
+  <meta name="description" content="Información centralizada, necesidades y canales para ayudar ante los incendios en la Comarca Andina." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>Incendios Comarca Andina — Información y Ayuda</h1>
+        <p id="lastUpdated">Actualizado: —</p>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn btn-cta-donate" id="btnCtaDonate" type="button">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+          Donar
+        </button>
+        <button class="btn btn-cta-volunteer" id="btnCtaVolunteer" type="button">
+          <i class="fa-solid fa-users"></i>
+          Voluntariado
+        </button>
+        <span class="pill" id="statusPill">Estado: Cargando…</span>
+        <button class="btn" id="btnShare" type="button">Compartir</button>
+        <button class="btn" id="btnTheme" type="button">Modo</button>
+      </div>
+    </header>
+
+    <!-- NAVEGACIÓN POR TABS -->
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="situacion" role="tab" aria-selected="true">
+        <span class="tab-icon"><i class="fa-solid fa-chart-line"></i></span>
+        <span class="tab-label">Situación Actual</span>
+      </button>
+      <button class="tab" data-tab="necesidades" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-list-check"></i></span>
+        <span class="tab-label">Necesidades</span>
+      </button>
+      <button class="tab" data-tab="ayuda" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-handshake-angle"></i></span>
+        <span class="tab-label">Puntos de Acopio</span>
+      </button>
+      <button class="tab" data-tab="voluntariado" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-users"></i></span>
+        <span class="tab-label">Voluntariado</span>
+      </button>
+      <button class="tab" data-tab="servicios" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-hands-holding-circle"></i></span>
+        <span class="tab-label">Servicios para Voluntarios</span>
+      </button>
+      <button class="tab" data-tab="salud" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="tab-label">Salud y Cuidado</span>
+      </button>
+      <button class="tab" data-tab="donaciones" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+        <span class="tab-label">Donaciones</span>
+      </button>
+      <button class="tab" data-tab="recursos" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-list-ul"></i></span>
+        <span class="tab-label">Recursos</span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- ALERTA PRINCIPAL (Siempre visible) -->
+      <section class="alert" id="alertBox" aria-live="polite">
+        <div style="min-width:18px;margin-top:2px;">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--warn);"></span>
+        </div>
+        <div>
+          <strong id="alertTitle">Cargando alerta…</strong>
+          <div class="muted" id="alertText">—</div>
+          <div class="meta" id="alertMeta"></div>
+        </div>
+      </section>
+
+      <!-- TAB 1: SITUACIÓN ACTUAL -->
+      <div class="tab-content active" id="tab-situacion" role="tabpanel">
+
+      <section class="grid">
+        <!-- IZQUIERDA: INFORMACIÓN CENTRAL -->
+        <div class="card" id="panelUpdates">
+          <div class="hd">
+            <h2>Partes y actualizaciones</h2>
+            <div class="row" style="align-items:center;">
+              <input class="input" id="searchUpdates" type="search" placeholder="Buscar (ej. Lago Puelo, Epuyén, ruta 40, evacuación…)" />
+              <select id="filterSource" title="Fuente">
+                <option value="">Todas las fuentes</option>
+              </select>
+            </div>
+          </div>
+          <div class="bd">
+            <div class="kpi-row" id="kpis"></div>
+            <div class="hr"></div>
+            <div class="list" id="updatesList"></div>
+            <div class="hr"></div>
+            <div class="notice">
+              Recomendación operativa: usar esta página como centro de referencia, pero
+              contrastar siempre con fuentes oficiales y cuentas verificadas. No difundir ubicaciones de brigadistas en tiempo real.
+            </div>
+          </div>
+        </div>
+
+        <!-- DERECHA: EMERGENCIAS -->
+        <aside class="card" id="emergencias">
+          <div class="hd">
+            <h2>Emergencias</h2>
+            <span class="tag danger">Números importantes</span>
+          </div>
+          <div class="bd">
+            <div class="notice">
+              Si hay riesgo inmediato (fuego cercano, humo denso, evacuación), llamar al número local correspondiente.
+            </div>
+            <div class="list" id="emergencyContacts" style="margin-top:14px;"></div>
+          </div>
+        </aside>
+      </section>
+
+      </div><!-- Fin tab-situacion -->
+
+      <!-- TAB 2: NECESIDADES -->
+      <div class="tab-content" id="tab-necesidades" role="tabpanel">
+
+      <section class="card" id="necesidades">
+        <div class="hd">
+          <h2>Necesidades Actuales</h2>
+          <div class="row">
+            <select id="filterTown" title="Localidad">
+              <option value="">Todas las localidades</option>
+            </select>
+            <select id="filterCategory" title="Categoría">
+              <option value="">Todas las categorías</option>
+            </select>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="notice">
+            <strong>🔥 Información actualizada constantemente.</strong><br>
+            Priorizar lo solicitado. Evitar saturar acopios con elementos no requeridos.
+            Si coordinás donaciones, incluí origen, cantidad y contacto.
+          </div>
+          <div class="hr"></div>
+          <div class="list" id="needsList"></div>
+          <div class="hr"></div>
+          <div class="small">
+            Las necesidades marcadas como <span class="tag ok">CUBIERTO</span> ya fueron satisfechas.
+            Concentrá tu ayuda en las que están <span class="tag danger">URGENTE</span> o <span class="tag need">ACTIVO</span>.
+          </div>
+        </div>
+      </section>
+
+      </div><!-- Fin tab-necesidades -->
+
+      <!-- TAB 3: PUNTOS DE ACOPIO -->
+      <div class="tab-content" id="tab-ayuda" role="tabpanel">
+
+      <!-- ACOPIOS -->
+      <section class="card" id="acopios">
+        <div class="hd">
+          <h2>Puntos de acopio</h2>
+          <span class="tag">Recibimiento de donaciones</span>
+        </div>
+        <div class="bd">
+          <div class="list" id="dropoffList"></div>
+        </div>
+      </section>
+
+      </div><!-- Fin tab-ayuda -->
+
+      <!-- TAB 3: VOLUNTARIADO -->
+      <div class="tab-content" id="tab-voluntariado" role="tabpanel">
+
+      <section class="card" id="voluntariado">
+        <div class="hd">
+          <h2>Voluntariado</h2>
+          <span class="tag need">Coordinar antes de ir</span>
+        </div>
+        <div class="bd">
+          <!-- ADVERTENCIA CRÍTICA - ANTES DE VIAJAR -->
+          <div class="alert" style="background: rgba(255,214,102,.12); border-color: rgba(255,214,102,.40); border-width: 2px;">
+            <div style="display: flex; gap: 12px; align-items: start;">
+              <div style="font-size: 28px; line-height: 1;">⚠️</div>
+              <div style="flex: 1;">
+                <strong style="font-size: 16px; display: block; margin-bottom: 8px;">🔥 ANTES DE VIAJAR - LEELO COMPLETO</strong>
+
+                <div style="margin: 12px 0;">
+                  <div style="font-weight: 600; margin-bottom: 6px;">✅ PODÉS AYUDAR SI:</div>
+                  <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
+                    <li>Te coordinaste previamente por WhatsApp</li>
+                    <li>Tenés autonomía (comida, agua, lugar para dormir)</li>
+                    <li>Tenés experiencia o te asignaron una tarea específica</li>
+                  </ul>
+                </div>
+
+                <div style="margin: 12px 0;">
+                  <div style="font-weight: 600; margin-bottom: 6px; color: var(--danger);">❌ NO VIAJES SI:</div>
+                  <ul style="margin: 4px 0 0 20px; line-height: 1.6;">
+                    <li><strong>No te coordinaste antes</strong></li>
+                    <li>Esperás que te organicen todo (alojamiento, comida, transporte)</li>
+                    <li>No tenés experiencia y pensás "aprendo allá"</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top: 12px; padding: 10px; background: rgba(0,0,0,.15); border-radius: 6px;">
+                  <strong>📱 COORDINÁ PRIMERO:</strong> Completá el formulario abajo y contactá por WhatsApp.
+                  <strong>NO te presentes sin aviso.</strong> Podés entorpecer la logística y ponerte en riesgo.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Red Virtual Patagonia - Necesidades urgentes -->
+          <div class="item" style="background: rgba(255,92,108,.08); border-color: rgba(255,92,108,.30);">
+            <div class="top">
+              <strong>Necesidades Urgentes - Red Virtual Patagonia</strong>
+              <span class="tag danger">Prioritario</span>
+            </div>
+            <div class="muted" style="margin-bottom:12px;">
+              <strong>NECESITAMOS:</strong>
+            </div>
+            <div style="display:grid; gap:10px; margin-bottom:12px;">
+              <div style="padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
+                <div style="font-weight:600; margin-bottom:4px;"></i>1- Voluntarios/as Brigadistas / Bomberos/as</div>
+                <div class="small">Con formación en IIFF</div>
+              </div>
+              <div style="padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
+                <div style="font-weight:600; margin-bottom:4px;">2- Vehículos para llevar voluntarios/as</div>
+                <div class="small">Desde BSAS / Rosario / CBA a Epuyén</div>
+              </div>
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <div style="flex:1;">
+                <div class="small">Coordinación: <strong>@redvirtualpatagonia</strong></div>
+                <div class="small">Contacto: <a href="tel:+5493546567422" class="mono" style="color:var(--accent); text-decoration:none;">+549 3546567422</a></div>
+              </div>
+              <a class="btn danger" href="https://wa.me/5493546567422?text=Hola,%20vi%20la%20solicitud%20de%20voluntarios%20de%20Red%20Virtual%20Patagonia%20y%20quiero%20ayudar" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Contactar
+              </a>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Reconstrucción -->
+          <div class="item" style="background: rgba(73,213,164,.08); border-color: rgba(73,213,164,.30);">
+            <div class="top">
+              <strong>Grupo de Reconstrucción de Viviendas</strong>
+              <span class="tag ok">Construcción</span>
+            </div>
+            <div class="muted">
+              Estamos armando un grupo de gente con experiencia en construcción natural o tradicional: carpinteros, albañiles, herreros, electricistas, plomeros, etc.
+              También aceptamos donaciones de materiales de construcción para crear refugios a las familias que perdieron todo en los incendios.
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <div style="flex:1;">
+                <div class="small">Coordinadora: Natalia Oller (Bioconstructora, Bariloche)</div>
+                <div class="small">Contacto: <a href="tel:+5492944895567" class="mono" style="color:var(--accent); text-decoration:none;">2944895567</a></div>
+              </div>
+              <a class="btn good" href="https://wa.me/5492944895567?text=Hola%20Natalia,%20me%20interesa%20colaborar%20con%20la%20reconstrucci%C3%B3n%20de%20viviendas" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Contactar
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FORMULARIO DE REGISTRO DE VOLUNTARIOS -->
+      <section class="card volunteer-form-card">
+        <div class="hd">
+          <div>
+            <h2>📝 Registrate como Voluntario</h2>
+            <div class="small" style="margin-top:4px;">Completá el formulario para coordinar tu ayuda</div>
+          </div>
+          <span class="tag good">Importante</span>
+        </div>
+        <div class="bd">
+
+          <!-- Paso 1: Datos Personales -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="form-section-number">1</span>
+              Datos Personales
+            </h3>
+            <div class="two">
+              <div>
+                <label>Nombre completo *</label>
+                <input class="input" id="vName" placeholder="Tu nombre y apellido" required />
+              </div>
+              <div>
+                <label>Edad *</label>
+                <input class="input" type="number" id="vAge" placeholder="Ej. 25" min="16" max="99" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 2: Disponibilidad -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="form-section-number">2</span>
+              Disponibilidad y Ubicación
+            </h3>
+            <div class="two">
+              <div>
+                <label>Localidad *</label>
+                <input class="input" id="vTown" placeholder="Lago Puelo / El Hoyo / Epuyén / …" required />
+              </div>
+              <div>
+                <label>Disponibilidad horaria *</label>
+                <input class="input" id="vAvailability" placeholder="Ej. Lunes a viernes 14–18 / fines de semana" required />
+              </div>
+              <div>
+                <label>Movilidad *</label>
+                <select id="vMobility">
+                  <option value="Sin movilidad">Sin movilidad</option>
+                  <option value="Auto">Auto</option>
+                  <option value="Camioneta">Camioneta</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 3: Experiencia -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="form-section-number">3</span>
+              Experiencia y Habilidades
+            </h3>
+
+            <div class="form-checkbox-single">
+              <label class="checkbox-label">
+                <input type="checkbox" id="vExperience" />
+                <span class="checkbox-text">
+                  <strong>Tengo experiencia en incendios forestales o emergencias</strong>
+                  <span class="checkbox-hint">Esto te permitirá participar en tareas de campo</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="hr"></div>
+
+            <label class="form-sublabel">Habilidades específicas (marcá todas las que apliquen)</label>
+            <div class="skills-grid">
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillHealth" class="vSkillCheck" />
+                <span class="skill-icon">🏥</span>
+                <span class="skill-label">
+                  <strong>Salud</strong>
+                  <small>Médico, enfermero, primeros auxilios</small>
+                </span>
+              </label>
+
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillLogistics" class="vSkillCheck" />
+                <span class="skill-icon">📦</span>
+                <span class="skill-label">
+                  <strong>Logística</strong>
+                  <small>Organización y coordinación</small>
+                </span>
+              </label>
+
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillCooking" class="vSkillCheck" />
+                <span class="skill-icon">🍳</span>
+                <span class="skill-label">
+                  <strong>Cocina</strong>
+                  <small>Preparación de viandas</small>
+                </span>
+              </label>
+
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillConstruction" class="vSkillCheck" />
+                <span class="skill-icon">🔨</span>
+                <span class="skill-label">
+                  <strong>Construcción</strong>
+                  <small>Reconstrucción y reparaciones</small>
+                </span>
+              </label>
+
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillAnimals" class="vSkillCheck" />
+                <span class="skill-icon">🐾</span>
+                <span class="skill-label">
+                  <strong>Animales</strong>
+                  <small>Cuidado y rescate</small>
+                </span>
+              </label>
+
+              <label class="skill-checkbox">
+                <input type="checkbox" id="vSkillTransport" class="vSkillCheck" />
+                <span class="skill-icon">🚗</span>
+                <span class="skill-label">
+                  <strong>Transporte</strong>
+                  <small>Traslados y logística</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Paso 4: Recursos -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="form-section-number">4</span>
+              Recursos Adicionales
+            </h3>
+
+            <div>
+              <label>Equipamiento que puedo aportar <span class="optional-badge">Opcional</span></label>
+              <textarea id="vSkills" placeholder="Ej. herramientas, generador, equipo de radio, tanque de agua, motocierra, etc." rows="3"></textarea>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="accommodation-section">
+              <label class="form-sublabel">¿Podés alojar a otros voluntarios?</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="vAccommodation" id="vAccomNo" value="No" checked />
+                  <span class="radio-label">No puedo alojar</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="vAccommodation" id="vAccomYes" value="Sí" />
+                  <span class="radio-label">Sí, puedo alojar</span>
+                </label>
+              </div>
+              <div class="capacity-input" id="capacityContainer" style="display:none; margin-top:12px;">
+                <label>¿Cuántas personas?</label>
+                <input class="input" id="vAccomCapacity" type="number" min="1" max="20" placeholder="Número de personas" style="max-width:200px;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="form-actions">
+            <button class="btn good btn-lg" id="btnVolunteerMsg" type="button">
+              <i class="fa-solid fa-paper-plane"></i>
+              Generar Mensaje de WhatsApp
+            </button>
+          </div>
+
+          <!-- Resultado -->
+          <div id="volMsgBox" class="message-result" style="display:none;">
+            <div class="message-result-header">
+              <i class="fa-solid fa-check-circle"></i>
+              <strong>Mensaje generado correctamente</strong>
+            </div>
+            <div class="copyline">
+              <div class="mono" id="volMsgText"></div>
+              <button class="btn" id="btnCopyVol" type="button">
+                <i class="fa-solid fa-copy"></i>
+                Copiar
+              </button>
+            </div>
+            <div class="message-actions">
+              <a class="btn primary btn-lg" id="btnVolunteerWhatsApp" href="#" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i>
+                Enviar por WhatsApp
+              </a>
+            </div>
+            <div class="small" style="margin-top:12px; text-align:center;">
+              <i class="fa-solid fa-info-circle"></i>
+              Destino sugerido: coordinación de voluntariado
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      </div><!-- Fin tab-voluntariado -->
+
+      <!-- TAB: SERVICIOS PARA VOLUNTARIOS -->
+      <div class="tab-content" id="tab-servicios" role="tabpanel">
+
+      <section class="card">
+        <div class="hd">
+          <div>
+            <h2>🤝 Servicios para Voluntarios</h2>
+            <div class="small">Apoyo y recursos disponibles para quienes están ayudando</div>
+          </div>
+          <span class="tag good">Disponible</span>
+        </div>
+        <div class="bd">
+          <div class="item" style="background: rgba(73, 213, 164, 0.08); border-color: rgba(73, 213, 164, 0.3);">
+            <strong>💚 Para quienes están dando todo</strong>
+            <p style="margin: 8px 0 0 0;">Si estás colaborando en territorio, hay servicios disponibles para que puedas descansar, alimentarte y cuidarte mientras ayudás a la comunidad.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Servicios dinámicos cargados desde services.json -->
+      <div id="servicesList"></div>
+
+      </div><!-- Fin tab-servicios -->
+
+      <!-- TAB 4: SALUD Y CUIDADO -->
+      <div class="tab-content" id="tab-salud" role="tabpanel">
+
+      <section class="card" id="salud">
+        <div class="hd">
+          <h2>Salud y Cuidado</h2>
+          <span class="tag ok">Para voluntarios y brigadistas</span>
+        </div>
+        <div class="bd">
+          <div class="item" style="background: rgba(94,240,160,.12); border-color: rgba(94,240,160,.40);">
+            <strong>💚 Tu bienestar es prioridad.</strong><br>
+            Trabajar en emergencias es agotador física y emocionalmente. Cuidarte a vos mismo te permite cuidar mejor a otros.
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Hidratación -->
+          <div class="item" style="background: rgba(94,240,160,.08); border-color: rgba(94,240,160,.30); border-left: 4px solid rgba(94,240,160,.6);">
+            <div class="top">
+              <strong>💧 Hidratación</strong>
+              <span class="tag" style="background: rgba(94,240,160,.2);">Crítico</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p>Tomá agua constantemente, aunque no tengas sed. El humo y el esfuerzo físico deshidratan rápido.</p>
+              <ul style="margin: 8px 0 0 20px;">
+                <li>Llevá siempre una botella de agua encima</li>
+                <li>Tomá al menos 3-4 litros por día</li>
+                <li>Si tu orina es oscura, estás deshidratado</li>
+                <li>Evitá alcohol y bebidas con cafeína en exceso</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Protección respiratoria -->
+          <div class="item" style="background: rgba(94,240,160,.08); border-color: rgba(94,240,160,.30); border-left: 4px solid rgba(94,240,160,.6);">
+            <div class="top">
+              <strong>😷 Protección respiratoria</strong>
+              <span class="tag" style="background: rgba(94,240,160,.2);">Crítico</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p>Usá barbijo N95 o superior. El humo contiene partículas tóxicas que dañan los pulmones.</p>
+              <ul style="margin: 8px 0 0 20px;">
+                <li>No trabajes sin protección respiratoria adecuada</li>
+                <li>Cambiá el barbijo cada 8 horas o cuando esté sucio</li>
+                <li>Si sentís irritación en garganta o pecho, alejate del humo</li>
+                <li>Tos persistente, sibilancias o dificultad respiratoria: consultá médico</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Descanso -->
+          <div class="item" style="background: rgba(94,240,160,.08); border-color: rgba(94,240,160,.30); border-left: 4px solid rgba(94,240,160,.6);">
+            <div class="top">
+              <strong>😴 Descanso</strong>
+              <span class="tag" style="background: rgba(94,240,160,.2);">Esencial</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p>No te exijas más allá de tus límites. El agotamiento extremo te pone en riesgo a vos y a otros.</p>
+              <ul style="margin: 8px 0 0 20px;">
+                <li>Dormí al menos 6-8 horas por día</li>
+                <li>Hacé pausas cada 2-3 horas de trabajo intenso</li>
+                <li>Si estás exhausto, pedí relevos sin culpa</li>
+                <li>Escuchá a tu cuerpo: dolor, mareos o confusión son señales de alerta</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Alimentación -->
+          <div class="item" style="background: rgba(94,240,160,.08); border-color: rgba(94,240,160,.30); border-left: 4px solid rgba(94,240,160,.6);">
+            <div class="top">
+              <strong>🍽️ Alimentación</strong>
+              <span class="tag" style="background: rgba(94,240,160,.2);">Esencial</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p>Comé regularmente, aunque no tengas hambre. Tu cuerpo necesita energía.</p>
+              <ul style="margin: 8px 0 0 20px;">
+                <li>No saltees comidas</li>
+                <li>Priorizá alimentos nutritivos: proteínas, carbohidratos, frutas</li>
+                <li>Llevá snacks energéticos (barras, frutas secas, chocolate)</li>
+                <li>Si sentís náuseas, mareos o debilidad, comé algo inmediatamente</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Salud mental -->
+          <div class="item" style="background: rgba(94,240,160,.08); border-color: rgba(94,240,160,.30); border-left: 4px solid rgba(94,240,160,.6);">
+            <div class="top">
+              <strong>🧠 Salud mental</strong>
+              <span class="tag" style="background: rgba(94,240,160,.2);">Importante</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p>Es normal sentirse abrumado, triste o ansioso en situaciones de emergencia.</p>
+              <ul style="margin: 8px 0 0 20px;">
+                <li>Hablá con tus compañeros, no te guardes las emociones</li>
+                <li>Llorar está bien. Es una respuesta natural al trauma</li>
+                <li>Si necesitás hablar con un profesional, pedí ayuda</li>
+                <li>No es debilidad pedir apoyo emocional, es cuidarte</li>
+                <li>Después del incendio, podés experimentar estrés postraumático. Es normal y tratable</li>
+              </ul>
+              <div style="margin-top:12px; padding:10px; background: rgba(77,163,255,.08); border-radius:6px;">
+                <strong>📞 Línea de atención psicológica:</strong> 135 (salud mental) • Disponible 24/7
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Signos de alerta -->
+          <div class="item" style="background: rgba(255,214,102,.12); border-color: rgba(255,214,102,.40); border-left: 4px solid rgba(255,214,102,.8);">
+            <div class="top">
+              <strong>⚕️ Signos de alerta médica</strong>
+              <span class="tag danger">Urgente</span>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <p><strong>Buscá atención médica INMEDIATA si tenés:</strong></p>
+              <ul style="margin: 8px 0 0 20px; color: var(--danger); font-weight: 600;">
+                <li>Dolor en el pecho o presión torácica</li>
+                <li>Dificultad severa para respirar</li>
+                <li>Mareos persistentes o pérdida del equilibrio</li>
+                <li>Confusión o desorientación</li>
+                <li>Náuseas o vómitos persistentes</li>
+                <li>Deshidratación severa (no orinás, orina muy oscura)</li>
+                <li>Quemaduras de segundo o tercer grado</li>
+                <li>Golpes fuertes en la cabeza</li>
+                <li>Tos con sangre o esputo negro</li>
+                <li>Dolor intenso que no cede</li>
+              </ul>
+              <div style="margin-top:12px; padding:12px; background: rgba(255,92,108,.15); border-radius:6px; font-weight:600;">
+                🚨 <strong>NO MINIMICES LOS SÍNTOMAS.</strong> Es mejor prevenir que lamentar. Si tenés dudas, consultá.
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Contactos de emergencia -->
+          <div class="notice">
+            <strong>📞 Contactos de emergencia médica:</strong><br>
+            <div style="margin-top:8px; display:grid; gap:6px;">
+              <div><strong>107</strong> - Ambulancia (SAME)</div>
+              <div><strong>135</strong> - Salud mental / Apoyo psicológico</div>
+              <div><strong>911</strong> - Emergencias generales</div>
+              <div><strong>Puesto de Salud Epuyén:</strong> Contactá a través de coordinación local</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Protección física adicional -->
+          <div class="item">
+            <div class="top">
+              <strong>🦺 Protección física</strong>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <ul style="margin: 0 0 0 20px;">
+                <li><strong>Protector solar:</strong> Factor 50+ cada 2 horas. El sol y el calor del fuego queman</li>
+                <li><strong>Ojos:</strong> Usá gafas protectoras. Si te entra humo o ceniza, lavá con agua limpia</li>
+                <li><strong>Piel:</strong> Cubrí brazos y piernas. Usá ropa de algodón o ignífuga</li>
+                <li><strong>Pies:</strong> Borcegos o botas altas. Revisá que no tengas ampollas</li>
+                <li><strong>Manos:</strong> Guantes siempre. Las quemaduras en manos son muy limitantes</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Prevención de lesiones -->
+          <div class="item">
+            <div class="top">
+              <strong>🏥 Prevención de lesiones</strong>
+            </div>
+            <div style="margin-top:8px; line-height:1.6;">
+              <ul style="margin: 0 0 0 20px;">
+                <li><strong>Levantamiento de peso:</strong> Usá las piernas, no la espalda. Pedí ayuda</li>
+                <li><strong>Herramientas:</strong> Revisá que estén en buen estado antes de usar</li>
+                <li><strong>Terreno:</strong> Mirá dónde pisás. Ramas, pozos y ceniza caliente son peligros</li>
+                <li><strong>Comunicación:</strong> Avisá dónde vas y cuándo volvés. Nunca trabajes solo</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      </div><!-- Fin tab-salud -->
+
+      <!-- TAB 5: DONACIONES -->
+      <div class="tab-content" id="tab-donaciones" role="tabpanel">
+
+      <section class="card" id="donaciones">
+        <div class="hd">
+          <h2>Donaciones</h2>
+          <span class="tag ok">Alias verificados</span>
+        </div>
+        <div class="bd">
+          <div class="notice">
+            Alias verificados de brigadas, bomberos y organizaciones. Todas las cuentas están confirmadas.
+          </div>
+          <div class="hr"></div>
+
+          <!-- NOTA IMPORTANTE BRIGADA PATAGÓNICA -->
+          <div class="alert" style="background: rgba(255,92,108,.08); border-color: rgba(255,92,108,.30);">
+            <strong>IMPORTANTE:</strong> Los alias de BRIGADA PATAGONICA dejaron de circular porque ya recibieron bastante y decidieron dejar lugar para otras brigadas que están armándose de equipo.
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="list" id="donationList"></div>
+        </div>
+      </section>
+
+      </div><!-- Fin tab-donaciones -->
+
+      <!-- TAB 5: RECURSOS -->
+      <div class="tab-content" id="tab-recursos" role="tabpanel">
+
+      <!-- GRUPOS DE WHATSAPP -->
+      <section class="card">
+        <div class="hd">
+          <h2>Grupos de Coordinación (WhatsApp)</h2>
+          <span class="tag good">Comunidad</span>
+        </div>
+        <div class="bd">
+          <div class="notice" id="whatsappDescription">
+            Grupos comunitarios de coordinación para voluntarios.
+          </div>
+
+          <div class="hr"></div>
+
+          <h3 style="margin:0 0 12px;font-size:15px;font-weight:600">Grupos Principales</h3>
+          <div class="list" id="mainWhatsappGroups"></div>
+
+          <div class="hr"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0;font-size:15px;font-weight:600">Grupos por Provincia</h3>
+            <button class="btn" id="toggleRegionalGroups" type="button">Mostrar grupos (8)</button>
+          </div>
+
+          <div id="regionalGroupsContainer" style="display:none;">
+            <div class="notice" style="margin-bottom:12px">
+              Para personas de distintas provincias que quieran organizar ayuda, donaciones o viajes.
+            </div>
+            <div class="list" id="regionalWhatsappGroups"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACCESOS RÁPIDOS -->
+      <section class="card">
+        <div class="hd">
+          <h2>Accesos rápidos</h2>
+          <span class="tag ok">Enlaces útiles</span>
+        </div>
+        <div class="bd">
+          <div class="list" id="quickLinks"></div>
+        </div>
+      </section>
+
+      </div><!-- Fin tab-recursos -->
+
+      <div class="footer">
+        <div>Hecho para centralizar información. Responsable de edición: <span class="mono" id="editorName">—</span></div>
+        <div class="mono">Versión: 2.0 • <span id="buildDate">—</span></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

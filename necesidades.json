@@ -1,0 +1,279 @@
+{
+  "needs": [
+    {
+      "id": "n1",
+      "title": "AGUA POTABLE (abundante)",
+      "detail": "Botellas y bidones. CRÍTICO para brigadistas en zona activa.",
+      "town": "Epuyén",
+      "category": "Insumos básicos",
+      "priority": "URGENTE",
+      "contact": "Escuela N°9 Mariano Moreno",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 14:30"
+    },
+    {
+      "id": "n2",
+      "title": "NAFTA",
+      "detail": "Combustible para motosierras, generadores y vehículos. URGENTE.",
+      "town": "Epuyén",
+      "category": "Insumos básicos",
+      "priority": "URGENTE",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 14:30"
+    },
+    {
+      "id": "n3",
+      "title": "Alimento balanceado para perros y gatos",
+      "detail": "Cualquier marca, bolsas cerradas. Para animales rescatados y de brigadistas.",
+      "town": "Epuyén",
+      "category": "Animales",
+      "priority": "URGENTE",
+      "contact": "Ayuda Animales El Bolsón - @patitobolson",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 13:15"
+    },
+    {
+      "id": "n4",
+      "title": "Generadores eléctricos",
+      "detail": "Zona sin abastecimiento eléctrico intermitente. Incluir combustible.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "URGENTE",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 14:00"
+    },
+    {
+      "id": "n5",
+      "title": "Radios / Handys",
+      "detail": "Para comunicación en zona. Crítico para coordinación.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "URGENTE",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 13:45"
+    },
+    {
+      "id": "n6",
+      "title": "Motobombas y bombas de alto caudal",
+      "detail": "Para combatir focos activos.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "ALTA",
+      "contact": "Bomberos Epuyén",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 12:30"
+    },
+    {
+      "id": "n7",
+      "title": "Máscaras y barbijos para humo",
+      "detail": "Protección respiratoria. Barbijos N95 o superior.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "ALTA",
+      "contact": "SUM Rincón de Lobos",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 12:00"
+    },
+    {
+      "id": "n8",
+      "title": "Borcegos de cuero caña alta",
+      "detail": "Talles del 36 al 45. Para brigadistas.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "ALTA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 11:30"
+    },
+    {
+      "id": "n9",
+      "title": "Motosierras y cadenas de repuesto",
+      "detail": "Incluir aceite 2T. Para despejar accesos.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "ALTA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 11:00"
+    },
+    {
+      "id": "n10",
+      "title": "Mangueras de incendio (1\", 1½\", 2\")",
+      "detail": "Con acoples rápidos Storz. Incluir acoples, reducciones y uniones.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "ALTA",
+      "contact": "Bomberos Epuyén",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 10:45"
+    },
+    {
+      "id": "n11",
+      "title": "Linternas frontales",
+      "detail": "Para trabajo nocturno. Incluir pilas o recargables.",
+      "town": "El Hoyo",
+      "category": "Herramientas",
+      "priority": "ALTA",
+      "contact": "Bomberos El Hoyo",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 10:00"
+    },
+    {
+      "id": "n12",
+      "title": "Colirio (sin corticoides)",
+      "detail": "Para irritación ocular por humo.",
+      "town": "Epuyén",
+      "category": "Primeros auxilios",
+      "priority": "ALTA",
+      "contact": "Puesto de salud",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 09:30"
+    },
+    {
+      "id": "n13",
+      "title": "Viandas y alimentos no perecederos",
+      "detail": "Fideos, arroz, legumbres, conservas. Para brigadistas y voluntarios.",
+      "town": "Epuyén",
+      "category": "Viandas",
+      "priority": "ALTA",
+      "contact": "Cocina Solidaria - 2945638277",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 11:00"
+    },
+    {
+      "id": "n14",
+      "title": "Guantes de cuero o ignífugos",
+      "detail": "Talles variados. Para protección de brigadistas.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "MEDIA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 10:00"
+    },
+    {
+      "id": "n15",
+      "title": "Cascos y gafas de protección",
+      "detail": "Protección para brigadistas.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "MEDIA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 09:45"
+    },
+    {
+      "id": "n16",
+      "title": "Palas, hachas, machetes",
+      "detail": "Herramientas manuales para control de focos.",
+      "town": "Epuyén",
+      "category": "Herramientas",
+      "priority": "MEDIA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 09:30"
+    },
+    {
+      "id": "n17",
+      "title": "Insumos de primeros auxilios",
+      "detail": "Pervinox, alcohol, gasas estériles, vendas, Platsul (quemaduras), solución fisiológica.",
+      "town": "Epuyén",
+      "category": "Primeros auxilios",
+      "priority": "MEDIA",
+      "contact": "Puesto de salud",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 09:00"
+    },
+    {
+      "id": "n18",
+      "title": "Sales de rehidratación y analgésicos",
+      "detail": "Para brigadistas y voluntarios. Incluir antiinflamatorios.",
+      "town": "Epuyén",
+      "category": "Primeros auxilios",
+      "priority": "MEDIA",
+      "contact": "Puesto de salud",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 08:45"
+    },
+    {
+      "id": "n19",
+      "title": "Protector solar",
+      "detail": "Factor alto. Para brigadistas expuestos.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "MEDIA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 08:30"
+    },
+    {
+      "id": "n20",
+      "title": "Insumos veterinarios",
+      "detail": "Antibióticos (penicilina, amoxicilina), analgésicos (meloxicam), Platsul, gasas, vendas, jeringas.",
+      "town": "Epuyén",
+      "category": "Animales",
+      "priority": "MEDIA",
+      "contact": "Ayuda Animales El Bolsón - @patitobolson",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 08:00"
+    },
+    {
+      "id": "n21",
+      "title": "Fardos y semillas para animales de granja",
+      "detail": "Para animales rescatados o evacuados.",
+      "town": "Epuyén",
+      "category": "Animales",
+      "priority": "MEDIA",
+      "contact": "Ayuda Animales El Bolsón - @patitobolson",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 07:45"
+    },
+    {
+      "id": "n22",
+      "title": "Caniles, transportadoras, correas y collares",
+      "detail": "Para transporte y cuidado de animales rescatados.",
+      "town": "Epuyén",
+      "category": "Animales",
+      "priority": "MEDIA",
+      "contact": "Ayuda Animales El Bolsón - @patitobolson",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 07:30"
+    },
+    {
+      "id": "n23",
+      "title": "Ropa ignífuga y mamelucos",
+      "detail": "Para protección de brigadistas.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "BAJA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 07:00"
+    },
+    {
+      "id": "n24",
+      "title": "Medias de trabajo",
+      "detail": "Para brigadistas.",
+      "town": "Epuyén",
+      "category": "Protección",
+      "priority": "BAJA",
+      "contact": "Coordinación brigadistas",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 06:45"
+    },
+    {
+      "id": "n25",
+      "title": "Vajilla descartable y bolsas de residuo",
+      "detail": "Para cocina solidaria.",
+      "town": "Epuyén",
+      "category": "Viandas",
+      "priority": "BAJA",
+      "contact": "Cocina Solidaria - 2945638277",
+      "status": "ACTIVO",
+      "updatedAt": "2026-01-12 06:30"
+    }
+  ]
+}

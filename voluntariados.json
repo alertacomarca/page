@@ -1,0 +1,52 @@
+{
+  "volunteerWhatsAppNumber": "5490000000000",
+  "whatsappGroups": {
+    "description": "Grupos comunitarios de coordinación para voluntarios que desean ayudar en los incendios de Epuyén/El Hoyo y mantenerse al tanto de la situación.",
+    "mainGroups": [
+      {
+        "name": "Voluntarios Mallín/Epuyén",
+        "description": "Grupo principal para mantenerse al tanto de todo",
+        "link": "https://chat.whatsapp.com/KgmTK9FsgoJ2ETept22YDq"
+      },
+      {
+        "name": "Coordinación General",
+        "description": "Grupo derivado para coordinar voluntarios",
+        "link": "https://chat.whatsapp.com/EZejSMTdR8x3RhvvyWXtEU"
+      }
+    ],
+    "regionalGroups": [
+      {
+        "province": "Chubut",
+        "link": "https://chat.whatsapp.com/Jwr4YM3xYd68IfYnOTC55U"
+      },
+      {
+        "province": "Río Negro",
+        "link": "https://chat.whatsapp.com/KmFYCqOHrtdBtZaXzBDO30"
+      },
+      {
+        "province": "Buenos Aires",
+        "link": "https://chat.whatsapp.com/DWDU10MIpge9FhXCdFFfRG"
+      },
+      {
+        "province": "Córdoba",
+        "link": "https://chat.whatsapp.com/LenzkXFvv7a2xlYhs8rir6"
+      },
+      {
+        "province": "Neuquén",
+        "link": "https://chat.whatsapp.com/G9YiXCJKKpg6AyelPnGU2r"
+      },
+      {
+        "province": "Tucumán",
+        "link": "https://chat.whatsapp.com/FdDhEHHoqp43GswZ68u5jp"
+      },
+      {
+        "province": "Santa Fe",
+        "link": "https://chat.whatsapp.com/Bpdi1vN98uS0n44ySsYcTf"
+      },
+      {
+        "province": "Mendoza",
+        "link": "https://chat.whatsapp.com/LUFENOrfdhvEDsawNzZryk"
+      }
+    ]
+  }
+}

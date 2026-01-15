@@ -1,0 +1,36 @@
+{
+  "dropoffs": [
+    {
+      "name": "Escuela N°9 Mariano Moreno",
+      "address": "",
+      "maps": "https://maps.app.goo.gl/UiSsFELY3KNWA7js7",
+      "contact": "",
+      "hours": "",
+      "town": "Epuyén"
+    },
+    {
+      "name": "Puesto El Pedregoso - Gazebo Verde",
+      "address": "CIC, Galeano, Keuken",
+      "maps": "https://goo.gl/maps/dsnspDvPt8ArCzTM6",
+      "contact": "",
+      "hours": "",
+      "town": "Epuyén"
+    },
+    {
+      "name": "Puesto del CIC Primavera",
+      "address": "",
+      "maps": "https://goo.gl/maps/WdwV3dnxgqGWwMC69",
+      "contact": "",
+      "hours": "",
+      "town": "Puente Salamín"
+    },
+    {
+      "name": "SUM Rincón de Lobos",
+      "address": "A la vuelta de la Biblioteca",
+      "maps": "https://maps.app.goo.gl/QnWWZpFsmTBzSeXk7",
+      "contact": "",
+      "hours": "",
+      "town": "El Hoyo"
+    }
+  ]
+} 

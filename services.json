@@ -1,0 +1,117 @@
+{
+  "services": [
+    {
+      "id": "s1",
+      "category": "Alojamiento",
+      "icon": "fa-bed",
+      "gradient": "linear-gradient(135deg, #4DA3FF 0%, #3B82F6 100%)",
+      "items": [
+        {
+          "title": "Chiguay Patio Casa",
+          "description": "Hospedaje ofrecido para voluntarios y brigadistas",
+          "status": "Disponible",
+          "contact": {
+            "type": "whatsapp",
+            "label": "Contactar por coordinación",
+            "url": "https://chat.whatsapp.com/EZejSMTdR8x3RhvvyWXtEU"
+          }
+        },
+        {
+          "title": "Espacios con carpas",
+          "description": "Vecinos con espacios verdes amplios que ofrecen lugar para acampar. Algunos cuentan con baño y ducha.",
+          "status": "Consultar",
+          "contact": {
+            "type": "whatsapp",
+            "label": "Consultar disponibilidad",
+            "url": "https://chat.whatsapp.com/EZejSMTdR8x3RhvvyWXtEU"
+          }
+        },
+        {
+          "title": "Pedro - General Roca",
+          "description": "Ofrece alojamiento y comida para bomberos, brigadistas y colaboradores que están viajando",
+          "status": "Disponible",
+          "note": "Reportarse por privado para seguimiento y apoyo en ruta"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "category": "Viandas y Alimentación",
+      "icon": "fa-utensils",
+      "gradient": "linear-gradient(135deg, #49D5A4 0%, #10B981 100%)",
+      "items": [
+        {
+          "title": "Escuela N° 9 - Epuyén",
+          "description": "Centro de preparación y distribución de viandas para bomberos y brigadistas. También recibe acopio de alimentos.",
+          "status": "Activo",
+          "location": {
+            "label": "Epuyén - Camino al Lago",
+            "url": "https://maps.app.goo.gl/UiSsFELY3KNWA7js7"
+          }
+        },
+        {
+          "title": "Escuela 717 - Radal",
+          "description": "Punto de preparación de viandas para brigadistas",
+          "status": "Activo"
+        },
+        {
+          "title": "Contacto para insumos - Cristian",
+          "description": "Coordina recolección de insumos para preparar viandas en Escuela N° 9. Necesita: arroz, fideos, enlatados, agua, frutas, verduras.",
+          "status": "Activo",
+          "contact": {
+            "type": "whatsapp",
+            "label": "+54 9 221 568-0715",
+            "url": "https://wa.me/5492215680715"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "category": "Masajes y Terapias",
+      "icon": "fa-spa",
+      "gradient": "linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)",
+      "items": [
+        {
+          "title": "Casa Isis - El Bolsón",
+          "description": "Espacio de cuidado y descanso para brigadistas y combatientes voluntarios. Masajes relajantes, descontracturantes y baño de sonido.",
+          "status": "Gratuito",
+          "schedule": "Desde las 11 hs",
+          "location": {
+            "label": "Casa Isis, El Bolsón",
+            "url": ""
+          },
+          "note": "Requisitos: DNI o credencial que acredite participación. Llegar bañados (en lo posible). Se necesitan donaciones de cremas y aceites para masajes."
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "category": "Otros Servicios",
+      "icon": "fa-circle-plus",
+      "gradient": "linear-gradient(135deg, #FFD166 0%, #F59E0B 100%)",
+      "items": [
+        {
+          "title": "Reparación de herramientas",
+          "description": "Servicio de reparación de motosierras y otras herramientas",
+          "status": "Consultar",
+          "contact": {
+            "type": "whatsapp",
+            "label": "Consultar por coordinación",
+            "url": "https://chat.whatsapp.com/EZejSMTdR8x3RhvvyWXtEU"
+          }
+        },
+        {
+          "title": "Primeros auxilios",
+          "description": "Insumos disponibles en los puestos de coordinación: Pervinox, gasas, platsul, vendas. Disponibles en CIC Puente Salamin y otros puntos.",
+          "status": "Disponible"
+        },
+        {
+          "title": "Comunicación en territorio",
+          "description": "En muchos lugares no hay señal de celular. Preguntar los códigos de los handys al llegar.",
+          "note": "Consultar códigos por el grupo de coordinación"
+        }
+      ]
+    }
+  ]
+}

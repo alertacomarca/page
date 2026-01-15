@@ -1,0 +1,39 @@
+{
+  "emergencyContacts": [
+    {
+      "name": "Bomberos (local)",
+      "detail": "Número local / 100 (si aplica)",
+      "action": "Llamar",
+      "href": "tel:100"
+    },
+    {
+      "name": "Policía",
+      "detail": "101 (AR)",
+      "action": "Llamar",
+      "href": "tel:101"
+    },
+    {
+      "name": "Emergencias médicas",
+      "detail": "107 (según jurisdicción)",
+      "action": "Llamar",
+      "href": "tel:107"
+    }
+  ],
+  "quickLinks": [
+    {
+      "label": "Protocolo de evacuación (guía)",
+      "href": "#",
+      "note": "Agregar enlace oficial o PDF"
+    },
+    {
+      "label": "Estado de rutas",
+      "href": "#",
+      "note": "Agregar enlace a Vialidad / municipio"
+    },
+    {
+      "label": "Parte oficial (organismo)",
+      "href": "#",
+      "note": "Agregar enlace a parte diario"
+    }
+  ]
+}
