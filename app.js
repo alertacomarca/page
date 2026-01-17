@@ -418,7 +418,8 @@ function renderVoluntariados(){
     // Botón de WhatsApp (si tiene teléfono)
     let waButtonHtml = '';
     if (v.telefono && v.whatsappMensaje) {
-      const waLink = `https://wa.me/${v.telefono.replace(/\+/g,'')}?text=${encodeURIComponent(v.whatsappMensaje)}`;
+      const phoneNumber = (v.telefono || '').replace(/\+/g,'');
+      const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(v.whatsappMensaje)}`;
       waButtonHtml = `
         <a class="btn ${colors.btn}" href="${waLink}" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> Contactar
