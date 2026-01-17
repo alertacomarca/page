@@ -3,16 +3,51 @@
   "voluntariados": [
     {
       "id": "reconstruccion-viviendas",
-      "titulo": "Grupo de Reconstrucción de Viviendas",
+      "titulo": "🧱 Reconstrucción de Viviendas (post-incendio)",
       "tipo": "ok",
       "tipoLabel": "Construcción",
-      "descripcion": "Estamos armando un grupo de gente con experiencia en construcción natural o tradicional: carpinteros, albañiles, herreros, electricistas, plomeros, etc. También aceptamos donaciones de materiales de construcción para crear refugios a las familias que perdieron todo en los incendios.",
-      "necesidades": null,
-      "coordinacion": null,
+      "descripcion": "Recuperación habitacional de familias con pérdidas totales o parciales.",
+      "tareas": [
+        "Limpieza de terrenos y retiro de escombros",
+        "Construcción tradicional y en seco",
+        "Bioconstrucción",
+        "Carpintería, herrería",
+        "Electricidad y plomería",
+        "Evaluación técnica y planificación por etapas"
+      ],
+      "perfilesBuscados": "Albañiles, bioconstructores, electricistas, plomeros, carpinteros, herreros, personas con herramientas o experiencia básica.",
+      "formularioInscripcion": "https://forms.gle/6gNyE1Cnn15XmTQK6",
+      "formularioLabel": "Formulario de inscripción (mano de obra)"
+    },
+    {
+      "id": "natalia-oller-bioconstruccion",
+      "titulo": "🏠 Bioconstrucción y Reconstrucción",
+      "tipo": "ok",
+      "tipoLabel": "Construcción",
+      "descripcion": "Convoca voluntarios con experiencia en construcción natural o tradicional (albañiles, carpinteros, herreros, electricistas, plomeros) y donaciones de materiales para refugios y viviendas.",
       "coordinador": "Natalia Oller (Bioconstructora, Bariloche)",
       "telefono": "+5492944895567",
-      "telefonoDisplay": "2944895567",
-      "whatsappMensaje": "Hola Natalia, me interesa colaborar con la reconstrucción de viviendas"
+      "telefonoDisplay": "294 489-5567",
+      "whatsappMensaje": "Hola Natalia, me interesa colaborar con la reconstrucción de viviendas",
+      "instagram": "https://www.instagram.com/kostohunwue"
+    },
+    {
+      "id": "colaboracion-web",
+      "titulo": "📋 Colaboración con información para la web",
+      "tipo": "need",
+      "tipoLabel": "Información",
+      "descripcion": "Ayudanos a mantener esta página actualizada con información confiable y verificada sobre voluntariados, donaciones, necesidades y novedades de la situación.",
+      "tareas": [
+        "Enviar información verificada sobre nuevos voluntariados",
+        "Reportar alias de donaciones confirmados",
+        "Compartir novedades de fuentes oficiales",
+        "Avisar sobre información desactualizada o errónea"
+      ],
+      "perfilesBuscados": "Cualquier persona con acceso a información confiable: coordinadores, vecinos de la zona, organizaciones, brigadistas.",
+      "coordinador": "Equipo web",
+      "telefono": "+5493517869841",
+      "telefonoDisplay": "351 786-9841",
+      "whatsappMensaje": "Hola, tengo información verificada para agregar a la página de incendios"
     }
   ],
   "whatsappGroups": {

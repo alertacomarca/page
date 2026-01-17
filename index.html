@@ -40,6 +40,15 @@
         <span class="tab-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
         <span class="tab-label">Donaciones</span>
       </button>
+      <button class="tab" data-tab="salud" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="tab-label">Salud y Cuidado</span>
+      </button>
+      <button class="tab" data-tab="grupos" role="tab" aria-selected="false">
+        <span class="tab-icon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="tab-label">Grupos WhatsApp</span>
+      </button>
+      <!-- TABS DESACTIVADAS
       <button class="tab" data-tab="necesidades" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-list-check"></i></span>
         <span class="tab-label">Necesidades</span>
@@ -56,14 +65,11 @@
         <span class="tab-icon"><i class="fa-solid fa-chart-line"></i></span>
         <span class="tab-label">Situación Actual</span>
       </button>
-      <button class="tab" data-tab="salud" role="tab" aria-selected="false">
-        <span class="tab-icon"><i class="fa-solid fa-heart-pulse"></i></span>
-        <span class="tab-label">Salud y Cuidado</span>
-      </button>
       <button class="tab" data-tab="recursos" role="tab" aria-selected="false">
         <span class="tab-icon"><i class="fa-solid fa-list-ul"></i></span>
         <span class="tab-label">Recursos</span>
       </button>
+      -->
     </nav>
 
     <main>
@@ -219,7 +225,7 @@
         </div>
       </section>
 
-      <!-- FORMULARIO DE REGISTRO DE VOLUNTARIOS -->
+      <!-- FORMULARIO DE REGISTRO DE VOLUNTARIOS 
       <section class="card volunteer-form-card">
         <div class="hd">
           <div>
@@ -230,7 +236,6 @@
         </div>
         <div class="bd">
 
-          <!-- Paso 1: Datos Personales -->
           <div class="form-section">
             <h3 class="form-section-title">
               <span class="form-section-number">1</span>
@@ -248,7 +253,6 @@
             </div>
           </div>
 
-          <!-- Paso 2: Disponibilidad -->
           <div class="form-section">
             <h3 class="form-section-title">
               <span class="form-section-number">2</span>
@@ -276,7 +280,6 @@
             </div>
           </div>
 
-          <!-- Paso 3: Experiencia -->
           <div class="form-section">
             <h3 class="form-section-title">
               <span class="form-section-number">3</span>
@@ -353,7 +356,6 @@
             </div>
           </div>
 
-          <!-- Paso 4: Recursos -->
           <div class="form-section">
             <h3 class="form-section-title">
               <span class="form-section-number">4</span>
@@ -386,7 +388,6 @@
             </div>
           </div>
 
-          <!-- Botones de acción -->
           <div class="form-actions">
             <button class="btn good btn-lg" id="btnVolunteerMsg" type="button">
               <i class="fa-solid fa-paper-plane"></i>
@@ -394,7 +395,6 @@
             </button>
           </div>
 
-          <!-- Resultado -->
           <div id="volMsgBox" class="message-result" style="display:none;">
             <div class="message-result-header">
               <i class="fa-solid fa-check-circle"></i>
@@ -420,7 +420,7 @@
           </div>
 
         </div>
-      </section>
+      </section>-->
 
       </div><!-- Fin tab-voluntariado -->
 
@@ -631,6 +631,42 @@
       </section>
 
       </div><!-- Fin tab-salud -->
+
+      <!-- TAB: GRUPOS DE WHATSAPP -->
+      <div class="tab-content" id="tab-grupos" role="tabpanel">
+
+      <section class="card">
+        <div class="hd">
+          <h2>Grupos de Coordinación (WhatsApp)</h2>
+          <span class="tag good">Comunidad</span>
+        </div>
+        <div class="bd">
+          <div class="notice" id="whatsappDescription">
+            Grupos comunitarios de coordinación para voluntarios.
+          </div>
+
+          <div class="hr"></div>
+
+          <h3 style="margin:0 0 12px;font-size:15px;font-weight:600">Grupos Principales</h3>
+          <div class="list" id="mainWhatsappGroups"></div>
+
+          <div class="hr"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0;font-size:15px;font-weight:600">Grupos por Provincia</h3>
+            <button class="btn" id="toggleRegionalGroups" type="button">Mostrar grupos</button>
+          </div>
+
+          <div id="regionalGroupsContainer" style="display:none;">
+            <div class="notice" style="margin-bottom:12px">
+              Para personas de distintas provincias que quieran organizar ayuda, donaciones o viajes.
+            </div>
+            <div class="list" id="regionalWhatsappGroups"></div>
+          </div>
+        </div>
+      </section>
+
+      </div><!-- Fin tab-grupos -->
 
       <!-- TAB 5: DONACIONES -->
       <div class="tab-content" id="tab-donaciones" role="tabpanel">

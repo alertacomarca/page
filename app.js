@@ -57,10 +57,13 @@ let CONFIG = null;
 /******************************************************************
  * CARGAR DATOS (ahora desde múltiples archivos)
  ******************************************************************/
+// Función para evitar caché en los fetch
+const fetchNoCache = (url) => fetch(url, { cache: 'no-store' });
+
 async function loadConfig() {
   try {
     // Cargar configuración principal (editorName, status)
-    const mainResp = await fetch('config.json');
+    const mainResp = await fetchNoCache('config.json');
     if (!mainResp.ok) throw new Error('Error cargando config.json');
     const mainJson = await mainResp.json();
 
@@ -80,12 +83,12 @@ async function loadConfig() {
 
     // Cargar los archivos restantes en paralelo (no fallar si alguno falta)
     const files = await Promise.all([
-      fetch('necesidades.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
-      fetch('partes.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
-      fetch('puntos-acopio.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
-      fetch('donaciones.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
-      fetch('recursos.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
-      fetch('voluntariados.json').then(r=> r.ok ? r.json() : null).catch(()=>null)
+      fetchNoCache('necesidades.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
+      fetchNoCache('partes.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
+      fetchNoCache('puntos-acopio.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
+      fetchNoCache('donaciones.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
+      fetchNoCache('recursos.json').then(r=> r.ok ? r.json() : null).catch(()=>null),
+      fetchNoCache('voluntariados.json').then(r=> r.ok ? r.json() : null).catch(()=>null)
     ]);
 
     const [needsJson, updatesJson, dropoffsJson, donationsJson, recursosJson, voluntJson] = files;
@@ -353,8 +356,8 @@ function renderVoluntariados(){
 
   $("#voluntariadosList").innerHTML = list.map((v, idx) => {
     const colors = colorMap[v.tipo] || colorMap.default;
-    const waLink = `https://wa.me/${v.telefono.replace(/\+/g,'')}?text=${encodeURIComponent(v.whatsappMensaje)}`;
 
+    // Sección de necesidades (formato anterior)
     let necesidadesHtml = '';
     if (v.necesidades && v.necesidades.length) {
       necesidadesHtml = `
@@ -370,8 +373,33 @@ function renderVoluntariados(){
       `;
     }
 
-    let descripcionHtml = v.descripcion ? `<div class="muted">${escapeHtml(v.descripcion)}</div>` : '';
+    // Descripción
+    let descripcionHtml = v.descripcion ? `<div class="muted" style="margin-bottom:12px;">${escapeHtml(v.descripcion)}</div>` : '';
 
+    // Tareas (nuevo formato)
+    let tareasHtml = '';
+    if (v.tareas && v.tareas.length) {
+      tareasHtml = `
+        <div style="margin-bottom:12px;">
+          <div class="muted" style="margin-bottom:8px;"><strong>TAREAS:</strong></div>
+          <ul style="margin:0 0 0 20px; line-height:1.6;">
+            ${v.tareas.map(t => `<li>${escapeHtml(t)}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Perfiles buscados (nuevo formato)
+    let perfilesHtml = '';
+    if (v.perfilesBuscados) {
+      perfilesHtml = `
+        <div style="margin-bottom:12px; padding:10px; background: rgba(255,255,255,.04); border-radius:8px;">
+          <div class="small"><strong>Perfiles buscados:</strong> ${escapeHtml(v.perfilesBuscados)}</div>
+        </div>
+      `;
+    }
+
+    // Contacto (formato anterior con teléfono/whatsapp)
     let contactoHtml = '';
     if (v.coordinacion) {
       contactoHtml += `<div class="small">Coordinación: <strong>${escapeHtml(v.coordinacion)}</strong></div>`;
@@ -379,7 +407,34 @@ function renderVoluntariados(){
     if (v.coordinador) {
       contactoHtml += `<div class="small">Coordinador/a: ${escapeHtml(v.coordinador)}</div>`;
     }
-    contactoHtml += `<div class="small">Contacto: <a href="tel:${escapeHtml(v.telefono)}" class="mono" style="color:var(--accent); text-decoration:none;">${escapeHtml(v.telefonoDisplay)}</a></div>`;
+    if (v.telefono && v.telefonoDisplay) {
+      contactoHtml += `<div class="small">Contacto: <a href="tel:${escapeHtml(v.telefono)}" class="mono" style="color:var(--accent); text-decoration:none;">${escapeHtml(v.telefonoDisplay)}</a></div>`;
+    }
+    if (v.instagram) {
+      const igHandle = v.instagram.replace('https://www.instagram.com/', '').replace('https://instagram.com/', '').replace('/', '');
+      contactoHtml += `<div class="small">Instagram: <a href="${escapeHtml(v.instagram)}" target="_blank" rel="noopener" style="color:var(--accent);">@${escapeHtml(igHandle)}</a></div>`;
+    }
+
+    // Botón de WhatsApp (si tiene teléfono)
+    let waButtonHtml = '';
+    if (v.telefono && v.whatsappMensaje) {
+      const waLink = `https://wa.me/${v.telefono.replace(/\+/g,'')}?text=${encodeURIComponent(v.whatsappMensaje)}`;
+      waButtonHtml = `
+        <a class="btn ${colors.btn}" href="${waLink}" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Contactar
+        </a>
+      `;
+    }
+
+    // Formulario de inscripción (nuevo formato)
+    let formularioHtml = '';
+    if (v.formularioInscripcion) {
+      formularioHtml = `
+        <a class="btn ${colors.btn}" href="${escapeHtml(v.formularioInscripcion)}" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-pen"></i> ${escapeHtml(v.formularioLabel || 'Inscribirse')}
+        </a>
+      `;
+    }
 
     const separator = idx < list.length - 1 ? '<div class="hr"></div>' : '';
 
@@ -389,15 +444,16 @@ function renderVoluntariados(){
           <strong>${escapeHtml(v.titulo)}</strong>
           <span class="tag ${v.tipo}">${escapeHtml(v.tipoLabel)}</span>
         </div>
-        ${necesidadesHtml}
         ${descripcionHtml}
+        ${tareasHtml}
+        ${perfilesHtml}
+        ${necesidadesHtml}
         <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
           <div style="flex:1;">
             ${contactoHtml}
           </div>
-          <a class="btn ${colors.btn}" href="${waLink}" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> Contactar
-          </a>
+          ${waButtonHtml}
+          ${formularioHtml}
         </div>
       </div>
       ${separator}
@@ -463,6 +519,9 @@ function wireVolunteer(){
   const capacityContainer = $("#capacityContainer");
   const accomCapacity = $("#vAccomCapacity");
 
+  // Si el formulario está comentado/oculto, no hacer nada
+  if (!accomYes || !accomNo) return;
+
   accomYes.addEventListener("change", ()=>{
     if(accomYes.checked) capacityContainer.style.display = "block";
   });
@@ -473,7 +532,10 @@ function wireVolunteer(){
     }
   });
 
-  $("#btnVolunteerMsg").addEventListener("click", ()=>{
+  const btnVolunteerMsg = $("#btnVolunteerMsg");
+  if (!btnVolunteerMsg) return;
+
+  btnVolunteerMsg.addEventListener("click", ()=>{
     const name = $("#vName").value.trim();
     const age = $("#vAge").value.trim();
     const town = $("#vTown").value.trim();
@@ -530,12 +592,15 @@ Habilidades: ${skillsText}`;
     }
   });
 
-  $("#btnCopyVol").addEventListener("click", async ()=>{
+  const btnCopyVol = $("#btnCopyVol");
+  if (!btnCopyVol) return;
+
+  btnCopyVol.addEventListener("click", async ()=>{
     const text = $("#volMsgText").textContent;
     try{
       await navigator.clipboard.writeText(text);
-      $("#btnCopyVol").textContent = "Copiado";
-      setTimeout(()=> $("#btnCopyVol").textContent = "Copiar", 900);
+      btnCopyVol.textContent = "Copiado";
+      setTimeout(()=> btnCopyVol.textContent = "Copiar", 900);
     }catch{
       alert("No se pudo copiar. Copiá manualmente.");
     }
@@ -686,7 +751,7 @@ async function renderServices(){
   if(!container) return;
 
   try {
-    const response = await fetch('services.json');
+    const response = await fetchNoCache('services.json');
     if (!response.ok) throw new Error('Error cargando servicios');
     const data = await response.json();
 

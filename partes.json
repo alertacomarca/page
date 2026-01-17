@@ -1,22 +1,13 @@
 {
   "updates": [
     {
-      "id": "u1",
-      "title": "Parte operativo (ejemplo)",
-      "body": "Actualizar con novedades: zonas afectadas, recursos en terreno, recomendaciones.",
-      "town": "Comarca",
-      "source": "Comité de Emergencia",
+      "id": "u3",
+      "title": "Situación contenida - Etapa de limpieza y relevamiento",
+      "body": "La situación del incendio se encuentra contenida gracias a las lluvias, pero aún no extinguida, con riesgo de rebrotes por brasas subterráneas. Continúan las tareas de brigadistas en guardias de ceniza y prevención. El acceso a algunas zonas sigue restringido, con servicios básicos afectados en Epuyén. La población presenta pérdidas habitacionales significativas y se está transitando una etapa de limpieza, relevamiento y organización, no todavía de reconstrucción plena. Se solicita coordinación estricta del voluntariado y trabajo progresivo, priorizando la seguridad y el respeto a las familias afectadas.",
+      "town": "Comarca Andina",
+      "source": "Coordinación General",
       "level": "PRECAUCIÓN",
-      "time": "2026-01-11 10:30"
-    },
-    {
-      "id": "u2",
-      "title": "Corte preventivo de ruta (ejemplo)",
-      "body": "Indicar tramo, horario, desvíos sugeridos y autoridad que lo informa.",
-      "town": "Zona",
-      "source": "Vialidad / Municipio",
-      "level": "ALERTA",
-      "time": "2026-01-11 09:10"
+      "time": "2026-01-17 12:00"
     }
   ]
 }
